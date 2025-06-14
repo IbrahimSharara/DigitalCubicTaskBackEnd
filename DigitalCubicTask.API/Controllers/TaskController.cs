@@ -13,22 +13,32 @@ namespace DigitalCubicTask.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTask(TaskSaveDto task)
         {
-            await service.CreateTask(task);
-            return Ok(new { Message = "Task created successfully" , Task = task });
+            var result = await service.CreateTask(task);
+            if (result > 0)
+            {
+                return Ok(new { Message = "Task created successfully", Task = task });
+
+            }
+            return NoContent();
         }
 
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateTask(int id, [FromBody] TaskSaveDto task)
         {
-            await service.UpdateTask(id , task);
-            return Ok(new { Message = "Task updated successfully" , Task = task});
+            var result = await service.UpdateTask(id, task);
+            if (result >0)
+            {
+            return Ok(new { Message = "Task updated successfully", Task = task });
+            }
+            return NoContent();
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTask(int id) {
+        public async Task<IActionResult> GetTask(int id)
+        {
             var task = await service.GetTask(id);
-            if (task == null )
+            if (task == null)
             {
                 return NotFound(new { Message = "No tasks found" });
             }
@@ -50,8 +60,12 @@ namespace DigitalCubicTask.API.Controllers
         [Route("{id}/complete")]
         public async Task<IActionResult> PatchTask(int id)
         {
-            await service.MarkComplete(id);
-            return Ok(new { Message = "Task Updated successfully" });
+            var result = await service.MarkComplete(id);
+            if (result > 0)
+            {
+                return Ok(new { Message = "Task Updated successfully" });
+            }
+            return NoContent();
         }
     }
 }

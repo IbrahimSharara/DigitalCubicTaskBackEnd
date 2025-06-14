@@ -67,16 +67,17 @@ namespace DigitalCubicTask.API.Service
             }).AsNoTracking().ToListAsync();
             return tasks;
         }
-        public async Task MarkComplete(Int64 id)
+        public async Task<int> MarkComplete(Int64 id)
         {
             var task =await context.Tasks.FindAsync(id);
             if (task != null)
             {
                 task.isCompleted = true;
-                await context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
             }
+            return 0;
         }
-        public async Task UpdateTask(long id, TaskSaveDto dto)
+        public async Task<int> UpdateTask(long id, TaskSaveDto dto)
         {
             try
             {
@@ -88,13 +89,13 @@ namespace DigitalCubicTask.API.Service
                     task.endDate = dto.endDate;
                     task.startDate = dto.startDate;
                     task.assigned_user_id = dto.assigned_user_id;
-                    var resul = await context.SaveChangesAsync();
+                    return await context.SaveChangesAsync();
                 }
+                return 0;
             }
             catch (Exception ex)
             {
-
-                throw;
+                return 0;
             }
             
         }
