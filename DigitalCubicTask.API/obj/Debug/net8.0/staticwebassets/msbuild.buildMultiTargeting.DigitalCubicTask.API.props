@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DigitalCubicTask.API.props" />
+</Project>

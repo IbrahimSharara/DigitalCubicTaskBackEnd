@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "d2YDwF9kaLgPql7xbFnIOF6pl5ugdPCNXHqZ3UE616g=",
+  "Source": "DigitalCubicTask.API",
+  "BasePath": "_content/DigitalCubicTask.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
