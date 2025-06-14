@@ -11,9 +11,9 @@ namespace DigitalCubicTask.API.Controllers
     public class TaskController(ITaskService service) : ControllerBase
     {
         [HttpPost]
-        public IActionResult CreateTask(TaskSaveDto task)
+        public async Task<IActionResult> CreateTask(TaskSaveDto task)
         {
-            service.CreateTask(task);
+            await service.CreateTask(task);
             return Ok(new { Message = "Task created successfully" , Task = task });
         }
 

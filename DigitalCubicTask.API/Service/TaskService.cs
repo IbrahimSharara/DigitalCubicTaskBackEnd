@@ -56,6 +56,7 @@ namespace DigitalCubicTask.API.Service
         {
            var tasks =await  context.Tasks.Include(x=> x.assigned_user_nav).Select(t => 
                new TaskDto{
+                   Id=t.Id,
                    description = t.description,
                    endDate = t.endDate,
                    isCompleted = t.isCompleted,
